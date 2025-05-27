@@ -3,7 +3,8 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 import org.testng.annotations.Test;
-public class Test2 {
+public class GetMethod {
+
 	@Test
 	public void test_1() {
 		given().
