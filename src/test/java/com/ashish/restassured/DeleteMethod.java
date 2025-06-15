@@ -2,13 +2,13 @@ package com.ashish.restassured;
 
 import org.testng.annotations.Test;
 
-import static io.restassured.RestAssured.baseURI;
-import static io.restassured.RestAssured.when;
+import static io.restassured.RestAssured.*;
 
 public class DeleteMethod {
     @Test
     public void testDelete() {
         baseURI = "https://reqres.in/api";
-        when().delete("/users/2").then().statusCode(204);
+        given().header("x-api-key","reqres-free-v1")
+                .when().delete("/users/2").then().statusCode(204);
     }
 }
