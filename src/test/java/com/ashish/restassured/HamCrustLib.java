@@ -2,7 +2,6 @@ package com.ashish.restassured;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -21,6 +20,7 @@ public class HamCrustLib {
                 .statusCode(200)
                 .body("page", equalTo(2))
                 .body("data", hasSize(greaterThan(0)))
+                .body("total_pages",equalTo(2))
                 .extract().response();
 
         System.out.println(response.asPrettyString());
