@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.*;
 public class HamCrustLib {
 
     @Test
-    public void testvalue() {
+    public void testValue() {
         RestAssured.baseURI = "https://reqres.in";
         Response response = given().header("x-api-key","reqres-free-v1")
                 .when()
