@@ -20,6 +20,7 @@ public class PutMethod {
 		
 		given()
 			.header("Content-Type", "application/json")
+				.header("x-api-key","reqres-free-v1")
 			.contentType(ContentType.JSON)
 			.accept(ContentType.JSON)
 			.body(request.toJSONString())
