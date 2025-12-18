@@ -8,10 +8,10 @@ public class GetMethod {
 	@Test
 	public void test_1() {
 		given().
-			get("https://reqres.in/api/users?page=2").
+			get("https://jsonplaceholder.typicode.com/comments?postId=1").
 		then().
 			statusCode(200).
-			body("data[1].id", equalTo(8)).
+			body("[0].email", equalTo("Eliseo@gardner.biz")).
 		log().all();
 	}
 }
