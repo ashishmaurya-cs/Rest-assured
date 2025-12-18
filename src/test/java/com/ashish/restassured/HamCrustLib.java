@@ -2,17 +2,23 @@ package com.ashish.restassured;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.when;
 import static org.hamcrest.Matchers.*;
 
 public class HamCrustLib {
 
     @Test
     public void testValue() {
-        RestAssured.baseURI = "https://reqres.in";
-        Response response = given().header("x-api-key","reqres-free-v1")
+
+        RequestSpecification rs= given().
+                header("x-api-key","reqres-free-v1")
+                .baseUri("https://reqres.in");
+
+        Response response =rs
                 .when()
                 .get("/api/users?page=2")
                 .then()

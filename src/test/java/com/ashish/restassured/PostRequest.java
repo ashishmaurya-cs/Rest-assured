@@ -1,6 +1,8 @@
 package com.ashish.restassured;
 
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import org.json.simple.JSONObject;
 import org.testng.annotations.Test;
 
@@ -9,14 +11,17 @@ public class PostRequest {
 
     @Test
     public void testPost(){
-    baseURI="https://reqres.in/api/";
 
         JSONObject jsonObject= new JSONObject();
         jsonObject.put("name","ram");
         jsonObject.put("job","Tester");
-        Response res = given()
-                .headers("Content-Type", "application/json",
-                        "x-api-key","reqres-free-v1")
+
+        RequestSpecification rs= given()
+                .header("x-api-key","reqres-free-v1")
+                .baseUri("https://reqres.in/api")
+                .contentType(ContentType.JSON);
+
+        Response res = rs
                 .body(jsonObject.toJSONString())
                 .when()
                 .post("/users")
