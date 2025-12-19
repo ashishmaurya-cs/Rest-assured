@@ -1,8 +1,10 @@
 package com.ashish.restassured;
 
+import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -32,14 +34,19 @@ public class PostRequest2 {
                 .contentType(ContentType.JSON)
                 .baseUri("https://dummy.restapiexample.com");
 
+        ResponseSpecification spec= new ResponseSpecBuilder()
+                .expectContentType(ContentType.JSON)
+                .expectStatusCode(200)
+                .build();
+
+
         Response response = rs
                 .when()
                 .body(ep)
                 .post("api/v1/create")
                 .then()
-                .statusCode(200)
+                .spec(spec)
                 .body("status", equalTo("success"))
-//                .body("data.id", equalTo(101))
                 .body("data.name", equalTo("Ajay"))
                 .body("data.salary", equalTo(12000))
                 .body("data.contacts.mobile1", equalTo(1234567890))
