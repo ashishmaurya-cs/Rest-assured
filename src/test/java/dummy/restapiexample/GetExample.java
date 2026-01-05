@@ -10,10 +10,13 @@ public class GetExample {
 
     @Test
     public void getTest(){
-    RestAssured.given().contentType("application/json").when()
+    RestAssured.given().contentType("application/json")
+            .when()
             .get("https://dummy.restapiexample.com/api/v1/employee/24")
             .then().body(
-                    "status",equalTo("success")
+                    "status",equalTo("success"),
+                    "data.id",equalTo(24),
+                    "message",equalTo("Successfully! Record has been fetched.")
             );
 
 //        System.out.println(rs.asString());
