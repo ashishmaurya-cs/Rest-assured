@@ -1,15 +1,21 @@
 package dummy.restapiexample;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Arrays;
+
 public class PostTest {
 
     @Test
-    public  void postTest(){
+    public  void postTest() throws IOException {
 
         //prepare body
         LaptopPojo laptopPojo = new LaptopPojo();
@@ -36,9 +42,15 @@ public class PostTest {
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(rs.getStatusCode(),200);
-        softAssert.assertEquals(rs.jsonPath().getString("name"),"HPS");
+        softAssert.assertEquals(rs.jsonPath().getString("name"),"HP");
 
         //Mandatory to add(otherwise all test will get pass)
         softAssert.assertAll();
+
+        //write json response to json file
+
+        File file = new File("src/test/resources/response.json");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.writeValue(file,rs.asString());
     }
 }
