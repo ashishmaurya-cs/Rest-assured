@@ -4,6 +4,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 public class PostTest {
 
@@ -32,5 +33,12 @@ public class PostTest {
                 .extract()
                 .response();
         System.out.println(rs.asString());
+
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(rs.getStatusCode(),200);
+        softAssert.assertEquals(rs.jsonPath().getString("name"),"HPS");
+
+        //Mandatory to add(otherwise all test will get pass)
+        softAssert.assertAll();
     }
 }
