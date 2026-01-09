@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class SingleObjectDeserializationPojo {
     private  String id;
     private String name;
+    private  String createdAt;
     private  Data data;
 
     public String getId() {
@@ -22,6 +23,14 @@ public class SingleObjectDeserializationPojo {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Data getData() {
