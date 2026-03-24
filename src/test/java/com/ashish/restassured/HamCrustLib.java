@@ -12,7 +12,7 @@ import static org.hamcrest.Matchers.*;
 public class HamCrustLib {
 
     @Test
-    public void testValue() {
+    public void testResponseData() {
 
         RequestSpecification rs= given().
                 header("x-api-key","reqres-free-v1")
