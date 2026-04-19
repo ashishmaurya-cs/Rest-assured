@@ -16,6 +16,7 @@ public class GetExample {
                 .then()
                 .statusCode(200)
                 .body("status", equalTo("success"))
+                .body("data.contacts",containsString("mobile"))
                 .extract().response();
 
         System.out.println(rs.asString());
