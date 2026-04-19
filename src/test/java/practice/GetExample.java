@@ -3,7 +3,7 @@ package practice;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.*;
-
+import  static org.hamcrest.Matchers.*;
 import org.testng.annotations.Test;
 
 public class GetExample {
@@ -14,7 +14,9 @@ public class GetExample {
                 .when()
                 .get("https://dummy.restapiexample.com/employees")
                 .then()
-                .statusCode(200).extract().response();
+                .statusCode(200)
+                .body("status", equalTo("success"))
+                .extract().response();
 
         System.out.println(rs.asString());
     }
