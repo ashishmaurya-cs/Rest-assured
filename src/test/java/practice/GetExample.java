@@ -17,6 +17,7 @@ public class GetExample {
                 .statusCode(200)
                 .body("status", equalTo("success"))
                 .body("data.contacts",containsString("mobile"))
+                .body("data.salary",equalTo("12000"))
                 .extract().response();
 
         System.out.println(rs.asString());
